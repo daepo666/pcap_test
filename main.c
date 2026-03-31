@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "my_struct.h"
+void translate_ipv4(const uint8_t *pointer, tcp_ipv4 *my_tcp_ipv4);
+void translate_ipv6(const uint8_t *pointer, tcp_ipv6 *my_tcp_ipv6);
 void usage() {
 	printf("syntax: pcap-test <interface>\n");
 	printf("sample: pcap-test wlan0\n");
@@ -57,4 +59,5 @@ int main(int argc, char* argv[]) {
     }
 
 	pcap_close(pcap);
+    return 0;
 }
