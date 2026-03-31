@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
         tcp_ipv4 my_tcp_ipv4;
         tcp_ipv6 my_tcp_ipv6;
 		printf("%u bytes captured\n", header->caplen);
-        if((ntohs(*(uint16_t*)&packet[12])) == 0x800){
+        if((ntohs(*(uint16_t*)&packet[12])) == 0x800 ){ //check ipv4
             translate_ipv4(packet, &my_tcp_ipv4);
         }
         else if((ntohs(*(uint16_t*)&packet[12])) == 0x86dd){
