@@ -7,7 +7,11 @@ void translate_ipv4(const uint8_t *pointer, tcp_ipv4 *my_tcp_ipv4);
 void translate_ipv6(const uint8_t *pointer, tcp_ipv6 *my_tcp_ipv6);
 
 void translate_ipv4(const uint8_t *pointer, tcp_ipv4 *my_tcp_ipv4){
-
+    if(pointer[23] != 6){
+        //not tcp
+        printf("not a tcp packet\n");
+        return;
+    }
     for (int i = 0 ; i<6; i++){
         my_tcp_ipv4->eth.dst_MAC[i] = pointer[i];
         my_tcp_ipv4->eth.src_MAC[i] = pointer[i+6];
@@ -30,12 +34,12 @@ void translate_ipv4(const uint8_t *pointer, tcp_ipv4 *my_tcp_ipv4){
 
     printf("Ethernet Header의 src mac: ");
     for(int i = 0; i <6; i++){
-        printf("%d: ",my_tcp_ipv4->eth.src_MAC[i]);
+        printf("%02x: ",my_tcp_ipv4->eth.src_MAC[i]);
     }
     printf("\n");
     printf("Ethernet Header의 dst mac: ");
     for(int i = 0; i <6; i++){
-        printf("%d: ",my_tcp_ipv4->eth.dst_MAC[i]);
+        printf("%02x: ",my_tcp_ipv4->eth.dst_MAC[i]);
     }
     printf("\n");
     
@@ -61,7 +65,11 @@ void translate_ipv4(const uint8_t *pointer, tcp_ipv4 *my_tcp_ipv4){
 }
 
 void translate_ipv6(const uint8_t *pointer, tcp_ipv6 *my_tcp_ipv6){
-
+    if(pointer[20] != 6){
+        //not tcp
+        printf("not a tcp packet\n");
+        return;
+    }
     for (int i = 0 ; i<6; i++){
         my_tcp_ipv6->eth.dst_MAC[i] = pointer[i];
         my_tcp_ipv6->eth.src_MAC[i] = pointer[i+6];
@@ -86,12 +94,12 @@ void translate_ipv6(const uint8_t *pointer, tcp_ipv6 *my_tcp_ipv6){
 
     printf("Ethernet Header의 src mac: ");
     for(int i = 0; i <6; i++){
-        printf("%d: ",my_tcp_ipv6->eth.src_MAC[i]);
+        printf("%02x: ",my_tcp_ipv6->eth.src_MAC[i]);
     }
     printf("\n");
     printf("Ethernet Header의 dst mac: ");
     for(int i = 0; i <6; i++){
-        printf("%d: ",my_tcp_ipv6->eth.dst_MAC[i]);
+        printf("%02x: ",my_tcp_ipv6->eth.dst_MAC[i]);
     }
     printf("\n");
     
