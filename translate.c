@@ -3,10 +3,10 @@
 #include <stdint.h>
 #include<arpa/inet.h>
 
-void translate_ipv4(uint8_t *pointer, tcp_ipv4 *my_tcp_ipv4);
-void translate_ipv6(uint8_t *pointer, tcp_ipv6 *my_tcp_ipv6);
+void translate_ipv4(const uint8_t *pointer, tcp_ipv4 *my_tcp_ipv4);
+void translate_ipv6(const uint8_t *pointer, tcp_ipv6 *my_tcp_ipv6);
 
-void translate_ipv4(uint8_t *pointer, tcp_ipv4 *my_tcp_ipv4){
+void translate_ipv4(const uint8_t *pointer, tcp_ipv4 *my_tcp_ipv4){
 
     for (int i = 0 ; i<6; i++){
         my_tcp_ipv4->eth.dst_MAC[i] = pointer[i];
@@ -60,7 +60,7 @@ void translate_ipv4(uint8_t *pointer, tcp_ipv4 *my_tcp_ipv4){
     printf("\n\n\n");
 }
 
-void translate_ipv6(uint8_t *pointer, tcp_ipv6 *my_tcp_ipv6){
+void translate_ipv6(const uint8_t *pointer, tcp_ipv6 *my_tcp_ipv6){
 
     for (int i = 0 ; i<6; i++){
         my_tcp_ipv6->eth.dst_MAC[i] = pointer[i];
