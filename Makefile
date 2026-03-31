@@ -1,6 +1,6 @@
 #Makefile
 all: pcap-test
-	
+
 pcap-test: main.o translate.o
 	gcc -o pcap-test main.o translate.o -lpcap
 
@@ -13,4 +13,3 @@ translate.o: my_struct.h translate.c
 clean:
 	rm -f pcap-test
 	rm -f *.o
-
