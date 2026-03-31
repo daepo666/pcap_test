@@ -45,9 +45,15 @@ int main(int argc, char* argv[]) {
 			printf("pcap_next_ex return %d(%s)\n", res, pcap_geterr(pcap));
 			break;
 		}
+        tcp_ipv4 my_tcp_ipv4;
+        tcp_ipv6 my_tcp_ipv6;
 		printf("%u bytes captured\n", header->caplen);
-        tcp_header my_tcp_header;
-    
+        if((ntohs(*(uint16_t*)&packet[12])) == 0x800){
+            translate_ipv4(packet, &my_tcp_ipv4);
+        }
+        else if((ntohs(*(uint16_t*)&packet[12])) == 0x86dd){
+            translate_ipv6(packet, &my_tcp_ipv6);
+        }
     }
 
 	pcap_close(pcap);
